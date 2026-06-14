@@ -1,0 +1,58 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/navbar') %>
+
+<main class="container">
+    <div class="page-header">
+        <h1>Queue for <%= today %></h1>
+    </div>
+
+    <% if (appointments.length === 0) { %>
+        <div class="alert alert-info">No appointments scheduled for this day.</div>
+    <% } else { %>
+        <div class="queue-container">
+            <div class="queue-stats">
+                <div class="stat-card">
+                    <h3>Total Appointments</h3>
+                    <p class="stat-number"><%= appointments.length %></p>
+                </div>
+                <div class="stat-card">
+                    <h3>Waiting</h3>
+                    <p class="stat-number"><%= appointments.filter(a => a.status === 'scheduled').length %></p>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table queue-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Patient Name</th>
+                            <th>Doctor</th>
+                            <th>Specialty</th>
+                            <th>Contact</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% appointments.forEach(apt => { %>
+                        <tr class="<%= apt.status === 'cancelled' ? 'cancelled-row' : '' %>">
+                            <td class="time-slot"><strong><%= apt.appointment_time %></strong></td>
+                            <td><%= apt.first_name %> <%= apt.last_name %></td>
+                            <td>Dr. <%= apt.doctor_name %></td>
+                            <td><%= apt.specialty %></td>
+                            <td><%= apt.phone %></td>
+                            <td>
+                                <span class="status-badge status-<%= apt.status %>">
+                                    <%= apt.status %>
+                                </span>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <% } %>
+</main>
+
+<%- include('../../partials/footer') %>

@@ -1,0 +1,20 @@
+{
+  "name": "hospital-queue-system",
+  "version": "1.0.0",
+  "description": "Hospital Queue and Appointment Management System",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "ejs": "^3.1.10",
+    "express": "^4.22.2",
+    "method-override": "^3.0.0",
+    "pg": "^8.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

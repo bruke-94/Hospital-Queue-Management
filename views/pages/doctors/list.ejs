@@ -1,0 +1,32 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/navbar') %>
+
+<main class="container">
+    <div class="page-header">
+        <h1>Doctors</h1>
+        <a href="/doctors/create" class="btn btn-primary">+ Add Doctor</a>
+    </div>
+
+    <% if (doctors.length === 0) { %>
+        <div class="alert alert-info">No doctors found.</div>
+    <% } else { %>
+        <div class="doctors-grid">
+            <% doctors.forEach(doctor => { %>
+                <div class="doctor-card">
+                    <h3>Dr. <%= doctor.name %></h3>
+                    <p class="specialty"><%= doctor.specialty %></p>
+                    <p>📞 <%= doctor.phone %></p>
+                    <p>✉️ <%= doctor.email || 'No email' %></p>
+                    <div class="card-actions">
+                        <a href="/doctors/edit/<%= doctor.id %>" class="btn-sm btn-edit">Edit</a>
+                        <form action="/doctors/delete/<%= doctor.id %>" method="POST" style="display:inline">
+                            <button type="submit" class="btn-sm btn-delete" onclick="return confirm('Delete this doctor?')">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</main>
+
+<%- include('../../partials/footer') %>

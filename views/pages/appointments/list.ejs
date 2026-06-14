@@ -1,0 +1,53 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/navbar') %>
+
+<main class="container">
+    <div class="page-header">
+        <h1>Appointments</h1>
+        <a href="/appointments/create" class="btn btn-primary">+ New Appointment</a>
+    </div>
+
+    <% if (appointments.length === 0) { %>
+        <div class="alert alert-info">No appointments found.</div>
+    <% } else { %>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Specialty</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% appointments.forEach(apt => { %>
+                    <tr>
+                        <td><%= apt.appointment_date %></td>
+                        <td><%= apt.appointment_time %></td>
+                        <td><%= apt.first_name %> <%= apt.last_name %></td>
+                        <td><%= apt.doctor_name %></td>
+                        <td><%= apt.specialty %></td>
+                        <td>
+                            <span class="status-badge status-<%= apt.status %>">
+                                <%= apt.status %>
+                            </span>
+                        </td>
+                        <td>
+                            <a href="/appointments/edit/<%= apt.id %>" class="btn-sm btn-edit">Edit</a>
+                            <form action="/appointments/delete/<%= apt.id %>" method="POST" style="display:inline">
+                                <button type="submit" class="btn-sm btn-delete" onclick="return confirm('Delete this appointment?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+</main>
+
+<%- include('../../partials/footer') %>

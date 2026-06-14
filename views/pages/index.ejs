@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<main class="container">
+    <div class="hero">
+        <h1>Welcome to Hospital Queue System</h1>
+        <p>Efficient appointment management for modern healthcare</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>📋 Appointments</h3>
+            <p>Book, edit, or cancel appointments easily</p>
+            <a href="/appointments" class="btn">View Appointments</a>
+        </div>
+        
+        <div class="feature-card">
+            <h3>👥 Patients</h3>
+            <p>Manage patient records and history</p>
+            <a href="/patients" class="btn">Manage Patients</a>
+        </div>
+        
+        <div class="feature-card">
+            <h3>👨‍⚕️ Doctors</h3>
+            <p>View doctor schedules and specialties</p>
+            <a href="/doctors" class="btn">View Doctors</a>
+        </div>
+        
+        <div class="feature-card">
+            <h3>⏰ Today's Queue</h3>
+            <p>Check current waiting list</p>
+            <a href="/queue/today" class="btn">View Queue</a>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

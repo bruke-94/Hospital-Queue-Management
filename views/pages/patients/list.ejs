@@ -1,0 +1,47 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/navbar') %>
+
+<main class="container">
+    <div class="page-header">
+        <h1>Patients</h1>
+        <a href="/patients/create" class="btn btn-primary">+ Add Patient</a>
+    </div>
+
+    <% if (patients.length === 0) { %>
+        <div class="alert alert-info">No patients found.</div>
+    <% } else { %>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Birth Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% patients.forEach(patient => { %>
+                    <tr>
+                        <td><%= patient.id %></td>
+                        <td><%= patient.first_name %> <%= patient.last_name %></td>
+                        <td><%= patient.phone %></td>
+                        <td><%= patient.email || '-' %></td>
+                        <td><%= patient.birth_date || '-' %></td>
+                        <td>
+                            <a href="/patients/edit/<%= patient.id %>" class="btn-sm btn-edit">Edit</a>
+                            <form action="/patients/delete/<%= patient.id %>" method="POST" style="display:inline">
+                                <button type="submit" class="btn-sm btn-delete" onclick="return confirm('Delete this patient?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+</main>
+
+<%- include('../../partials/footer') %>
