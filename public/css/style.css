@@ -4,10 +4,25 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #f4f4f4;
+  --surface: #ffffff;
+  --text: #2c3e50;
+  --muted: #7f8c8d;
+  --primary: #3498db;
+  --primary-dark: #2980b9;
+  --danger: #e74c3c;
+  --nav-bg: #2c3e50;
+  --nav-text: #ffffff;
+  --hero-gradient-start: #667eea;
+  --hero-gradient-end: #764ba2;
+}
+
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  background-color: #f4f4f4;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 /* Navbar */
